@@ -1,10 +1,14 @@
+/* Variables */
 :root {
     --body-color-dark: #020022;
     --body-color-light: aliceblue;
     --button-background: #39ff14;
     --button-background-sec: #2ac40f;
-    --button-padding: 15px 25px;
+    --button-shadow-color: #1e9909;
+    --button-border-radius: 10px 0 10px 0;
 }
+
+/* General Styles */
 
 * {
     box-sizing: border-box;
@@ -13,6 +17,8 @@
 body {
     margin: 0;
 }
+
+/* Display and Container */
 
 .positioner {
     height: 100vh;
@@ -34,42 +40,29 @@ body {
     background-color: var(--body-color-dark);
 }
 
+/* Button Style */
+
 .neon-button {
-    z-index: 9999;
     position: relative;
-    background-color: transparent;
-    padding: var(--button-padding);
+    background-image: linear-gradient(135deg, var(--button-background) 0%, var(--button-background) 50%, var(--button-background-sec) 50%, var(--button-background-sec) 100%);
+    padding: 15px 25px;
     border: 0;
-    border-radius: 20px;
-    box-shadow: 0 0 5px 1px var(--button-background-sec);
-    transition: box-shadow 600ms;
+    border-radius: var(--button-border-radius);
+    box-shadow: 0 0 5px 2px var(--button-shadow-color);
+    transition: box-shadow 600ms, background-position 350ms;
     font-weight: bold;
     font-family: 'Orbitron', sans-serif;
+    background-size: 180% 100%;
+    background-position: 100% 0;
     font-size: 20px;
 }
 
-.neon-button::before {
-    z-index: -1;
-    position: absolute;
-    left: 0;
-    top: 0;
-    content: '';
-    height: 100%;
-    width: 100%;
-    border-radius: 20px;
-    background-image: linear-gradient(135deg, var(--button-background) 0%, var(--button-background) 50%, var(--button-background-sec) 50%, var(--button-background-sec) 100%);
-    background-size: 220% 220%;
-    background-position: 100% 0;
-    transition: background-position 350ms;
-}
-
 .neon-button:hover {
-    box-shadow: 0 0 10px 2px var(--button-background);
+    box-shadow: 0 0 5px 3px var(--button-background-sec);
+    background-position: 0 0;
 }
 
-.neon-button:hover::before {
-    background-position: 0 100%;
-}
+/* Queries for Mobile View */
 
 @media screen and (max-width: 800px) {
     .positioner {
