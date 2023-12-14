@@ -1,7 +1,86 @@
+:root {
+    --body-color-dark: #020022;
+    --body-color-light: aliceblue;
+    --button-background: #39ff14;
+    --button-background-sec: #2ac40f;
+    --button-padding: 15px 25px;
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
+}
+
+.positioner {
+    height: 100vh;
+    display: flex;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 50%;
+}
+
+.button-container.light {
+    background-color: var(--body-color-light);
+}
+
+.button-container.dark {
+    background-color: var(--body-color-dark);
+}
+
+.neon-button {
+    z-index: 9999;
+    position: relative;
+    background-color: transparent;
+    padding: var(--button-padding);
+    border: 0;
+    border-radius: 20px;
+    box-shadow: 0 0 5px 1px var(--button-background-sec);
+    transition: box-shadow 600ms;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+}
+
+.neon-button::before {
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: '';
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    background-image: linear-gradient(135deg, var(--button-background) 0%, var(--button-background) 50%, var(--button-background-sec) 50%, var(--button-background-sec) 100%);
+    background-size: 220% 220%;
+    background-position: 100% 0;
+    transition: background-position 350ms;
+}
+
+.neon-button:hover {
+    box-shadow: 0 0 10px 2px var(--button-background);
+}
+
+.neon-button:hover::before {
+    background-position: 0 100%;
+}
+
+@media screen and (max-width: 800px) {
+    .positioner {
+        flex-direction: column;
+    }
+
+    .button-container {
+        flex: 100%;
+    }
+
+    .neon-button {
+        font-size: 16px;
+    }
 }
